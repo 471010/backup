@@ -48,25 +48,15 @@ frameList = ['''
 ''']
 
 myWord = "hello"
+myWord = list(myWord)
+guessList = "_____"
+guessList = list(guessList)
 
 misses = []
 
-
-
+countB = 0
 
 tries = int(input("How many tries would you like? "))
-
-
-
-
-
-choice = input("Type a word: ")
-
-
-if choice == myWord:
-	print("It's a match")
-else:
-	print("Not a match")
 
 # If a Letter is in a word
 while True:
@@ -77,11 +67,21 @@ while True:
 
 	if letter == "Guess":
 		guess = input("What is the word?")
+		myWord = "hello"
 		if guess == myWord:
-			print("You Win!")
+			print("You Win! The Word Was " + str(myWord))
 			break
 		else:
 			print("Wrong answer. Try again")
+
+	if letter in myWord:
+		count = 0
+		for letterA in myWord:
+			if letterA in letter:
+				guessList[count] = letter
+			count += 1
+
+	print(guessList)
 
 	if letter in myWord:
 		print("The letter is in the word")
@@ -91,18 +91,16 @@ while True:
 		print("Misses:" + str(misses))
 		tries = tries-1
 		print("Tries left: " + str(tries))
+		print(frameList[countB])
+		countB = countB + 1
 	if tries == 0:
-		print("Game Over-You Lose")
+		print("Game Over--You Lose")
 		break
 
-	if misses == "10":
-		print("You Lose")
-		break
+	countA = 0
 
-	count = 0
-
-	for letter2 in myWord:
-		if letter2 == letter:
-			print("The letter is in space " + str(count))
+	for letterB in myWord:
+		if letterB == letter:
+			print("The letter is in space " + str(countA))
 		
-		count += 1
+		countA += 1
